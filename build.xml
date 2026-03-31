@@ -1,0 +1,28 @@
+<project default="rebuild">
+
+	<property name="main.dir" value="src/main"/>
+	<property name="dag.jar" value="lib/dag-2.0.0.jar"/>
+	<property name="build.root" value="build"/>
+	<property name="build.classes" value="${build.root}/classes"/>
+
+	<target name="clean">
+		<delete dir="${build.root}"/>
+	</target>
+
+	<target name="compile">
+		<mkdir dir="${build.classes}"/>
+		<javac srcdir="${main.dir}" destdir="${build.classes}" classpath="${dag.jar}"/>
+	</target>
+
+	<target name="rebuild" depends="clean,compile"/>
+
+	<target name="run">
+		<java classname="main.ContactTrace">
+			<classpath>
+				<pathelement location="${dag.jar}"/>
+				<pathelement path="${build.classes}"/>
+			</classpath>
+		</java>
+	</target>
+
+</project>
