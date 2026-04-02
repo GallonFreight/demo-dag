@@ -1,7 +1,7 @@
 <project default="rebuild">
 
 	<property name="main.dir" value="src/main"/>
-	<property name="main.class" value="main.ContactTrace"/>
+	<property name="main.class" value="main.Main"/>
 	<property name="lib.dir" value="lib"/>
 	<property name="build.root" value="build"/>
 	<property name="build.classes" value="${build.root}/classes"/>
