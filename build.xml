@@ -3,10 +3,14 @@
 	<property name="main.dir" value="src/main"/>
 	<property name="main.class" value="main.ContactTrace"/>
 	<property name="lib.dir" value="lib"/>
-	<property name="dag.jar" value="${lib.dir}/dag-2.0.0.jar"/>
 	<property name="build.root" value="build"/>
 	<property name="build.classes" value="${build.root}/classes"/>
 	<property name="jar.file" value="${build.root}/demo-dag.jar"/>
+
+	<path id="classpath">
+		<fileset dir="${lib.dir}" includes="*.jar"/>
+	</path>
+
 
 	<target name="clean">
 		<delete dir="${build.root}"/>
@@ -14,18 +18,7 @@
 
 	<target name="compile">
 		<mkdir dir="${build.classes}"/>
-		<javac srcdir="${main.dir}" destdir="${build.classes}" classpath="${dag.jar}"/>
-	</target>
-
-	<target name="rebuild" depends="clean,compile"/>
-
-	<target name="run">
-		<java classname="${main.class}">
-			<classpath>
-				<pathelement location="${dag.jar}"/>
-				<pathelement path="${build.classes}"/>
-			</classpath>
-		</java>
+		<javac srcdir="${main.dir}" destdir="${build.classes}" classpathref="classpath"/>
 	</target>
 
 	<target name="jar" depends="compile">
@@ -36,5 +29,7 @@
 			<zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
 		</jar>
 	</target>
+
+	<target name="rebuild" depends="clean,jar"/>
 
 </project>
