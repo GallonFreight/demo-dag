@@ -1,5 +1,6 @@
 package main;
 
+import java.util.*;
 import me.alexjs.dag.*;
 
 public class ContactTrace {
@@ -29,5 +30,9 @@ public class ContactTrace {
 			System.out.printf("\t%s\n", getter);
 		}
 		System.out.println();
+	}
+
+	public Map<String, Collection<String>> map() {
+		return dag.toMap();
 	}
 }

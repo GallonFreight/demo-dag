@@ -32,4 +32,9 @@
 
 	<target name="rebuild" depends="clean,jar"/>
 
+	<target name="debug">
+		<mkdir dir="${build.classes}"/>
+		<javac srcdir="${main.dir}" destdir="${build.classes}" classpathref="classpath" debug="on"/>
+	</target>
+
 </project>
