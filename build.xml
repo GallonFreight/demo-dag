@@ -1,9 +1,16 @@
-<project default="rebuild">
+<project default="rebuild" basedir=".">
 
 	<property name="main.dir" value="src/main"/>
 	<property name="dag.jar" value="lib/dag-2.0.0.jar"/>
 	<property name="build.root" value="build"/>
 	<property name="build.classes" value="${build.root}/classes"/>
+
+	<path id="classpath">
+		<fileset dir="lib">
+			<include name="*.jar"/>
+		</fileset>
+	</path>
+
 
 	<target name="clean">
 		<delete dir="${build.root}"/>
@@ -11,7 +18,7 @@
 
 	<target name="compile">
 		<mkdir dir="${build.classes}"/>
-		<javac srcdir="${main.dir}" destdir="${build.classes}" classpath="${dag.jar}"/>
+		<javac srcdir="${main.dir}" destdir="${build.classes}" classpathref="classpath"/>
 	</target>
 
 	<target name="rebuild" depends="clean,compile"/>
