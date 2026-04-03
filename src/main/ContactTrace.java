@@ -7,8 +7,12 @@ public class ContactTrace {
 
 	private Dag<String> dag;
 
+	public ContactTrace(Dag<String> dag) {
+		this.dag = dag;
+	}
+
 	public ContactTrace() {
-		dag = new HashDag<String>();
+		this(new HashDag<String>());
 	}
 
 	public void logContact(String from, String to) {
